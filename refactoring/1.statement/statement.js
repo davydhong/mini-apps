@@ -2,10 +2,16 @@ const statement = (invoice, plays) => {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `Statement for ${invoice[0].customer}\n`;
-  const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format;
+  const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format; // this is a function format(number);
+
   for (const perf of invoice[0].performances) {
     const play = plays[perf.playID];
     let thisAmount = 0;
+
+    /*
+     ? Chunk 1: Calculates charge for one performance
+     ? BAD: Not clear what the purpose of the code block is without reading into it
+    */
 
     switch (play.type) {
       case 'tragedy':
