@@ -50,11 +50,11 @@ const volumeCreditsFor = (aPerformance) => {
 // *
 // *
 // *
-const format = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
+const usd = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
 
 module.exports = {
   amountFor,
   playFor,
   volumeCreditsFor,
-  format,
+  usd,
 };
