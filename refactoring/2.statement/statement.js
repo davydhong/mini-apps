@@ -1,6 +1,4 @@
-const amountFor = require('./amountFor');
-
-const playFor = require('./playFor');
+const { amountFor, playFor, volumeCreditsFor } = require('./helpers');
 
 const statement = (invoice) => {
   let totalAmount = 0;
@@ -9,9 +7,7 @@ const statement = (invoice) => {
   const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format;
   for (const perf of invoice[0].performances) {
     // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    // add extra credit for every ten comedy attendees
-    if (playFor(perf).type === 'comedy') volumeCredits += Math.floor(perf.audience / 5);
+    volumeCredits += volumeCreditsFor(perf);
     // print line for this order
     result += `${playFor(perf).name}:${format(amountFor(perf) / 100)}(${perf.audience} seats)\n`;
     totalAmount += amountFor(perf);
