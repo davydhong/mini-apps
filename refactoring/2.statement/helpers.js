@@ -1,7 +1,13 @@
 const plays = require('./plays');
 
+// *
+// *
+// *
 const playFor = aPerformance => plays[aPerformance.playID];
 
+// *
+// *
+// *
 const amountFor = (aPerformance) => {
   let thisAmount = 0;
 
@@ -28,14 +34,27 @@ const amountFor = (aPerformance) => {
   return thisAmount;
 };
 
+// *
+// *
+// *
 const volumeCreditsFor = (aPerformance) => {
   let result = 0;
 
   // add volume credits
   result += Math.max(aPerformance.audience - 30, 0);
   // add extra credit for every ten comedy attendees
-  if (playFor(aPerformance).type === 'comedy') result += Math.floor(perf.audience / 5);
+  if (playFor(aPerformance).type === 'comedy') result += Math.floor(aPerformance.audience / 5);
   return result;
 };
 
-module.exports = { amountFor, playFor, volumeCreditsFor };
+// *
+// *
+// *
+const format = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
+
+module.exports = {
+  amountFor,
+  playFor,
+  volumeCreditsFor,
+  format,
+};

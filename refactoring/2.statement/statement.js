@@ -1,10 +1,11 @@
-const { amountFor, playFor, volumeCreditsFor } = require('./helpers');
+const {
+  amountFor, playFor, volumeCreditsFor, format,
+} = require('./helpers');
 
 const statement = (invoice) => {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `Statement for ${invoice[0].customer}\n`;
-  const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format;
   for (const perf of invoice[0].performances) {
     // add volume credits
     volumeCredits += volumeCreditsFor(perf);
