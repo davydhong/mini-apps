@@ -2,13 +2,13 @@ const amountFor = require('./amountFor');
 
 const playFor = require('./playFor');
 
-const statement = (invoice, plays) => {
+const statement = (invoice) => {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `Statement for ${invoice[0].customer}\n`;
   const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format;
   for (const perf of invoice[0].performances) {
-    const thisAmount = amountFor(perf, playFor(perf));
+    const thisAmount = amountFor(perf);
 
     // add volume credits
     volumeCredits += Math.max(perf.audience - 30, 0);

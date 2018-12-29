@@ -1,7 +1,9 @@
-const amountFor = (aPerformance, play) => {
+const playFor = require('./playFor');
+
+const amountFor = (aPerformance) => {
   let thisAmount = 0;
 
-  switch (play.type) {
+  switch (playFor(aPerformance).type) {
     case 'tragedy':
       thisAmount = 40000;
 
@@ -19,7 +21,7 @@ const amountFor = (aPerformance, play) => {
       break;
 
     default:
-      throw new Error(`unknown type: ${play.type}`);
+      throw new Error(`unknown type: ${playFor(aPerformance).type}`);
   }
   return thisAmount;
 };
