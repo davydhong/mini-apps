@@ -1,5 +1,5 @@
 const {
-  amountFor, playFor, volumeCreditsFor, usd, totalVolumeCredits,
+  amountFor, playFor, usd, totalVolumeCredits,
 } = require('./helpers');
 
 const statement = (invoice) => {
