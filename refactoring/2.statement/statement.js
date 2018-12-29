@@ -1,5 +1,5 @@
 const {
-  amountFor, playFor, volumeCreditsFor, usd,
+  amountFor, playFor, volumeCreditsFor, usd, totalVolumeCredits,
 } = require('./helpers');
 
 const statement = (invoice) => {
@@ -12,14 +12,8 @@ const statement = (invoice) => {
     totalAmount += amountFor(perf);
   }
 
-  let volumeCredits = 0;
-  for (const perf of invoice[0].performances) {
-    // add volume credits
-    volumeCredits += volumeCreditsFor(perf);
-  }
-
   result += `Amount owed is ${usd(totalAmount / 100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
+  result += `You earned ${totalVolumeCredits()} credits\n`;
   return result;
 };
 

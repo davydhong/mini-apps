@@ -52,9 +52,21 @@ const volumeCreditsFor = (aPerformance) => {
 // *
 const usd = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
 
+const invoice = require('./invoice');
+
+const totalVolumeCredits = () => {
+  let result = 0;
+  for (const perf of invoice[0].performances) {
+    // add volume credits
+    result += volumeCreditsFor(perf);
+  }
+  return result;
+};
+
 module.exports = {
   amountFor,
   playFor,
   volumeCreditsFor,
   usd,
+  totalVolumeCredits,
 };
