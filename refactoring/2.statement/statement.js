@@ -1,6 +1,6 @@
 const amountFor = require('./amountFor');
 
-const playFor = requir('./playFor');
+const playFor = require('./playFor');
 
 const statement = (invoice, plays) => {
   let totalAmount = 0;
