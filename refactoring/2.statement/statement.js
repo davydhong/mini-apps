@@ -1,12 +1,14 @@
 const amountFor = require('./amountFor');
 
+const playFor = requir('./playFor');
+
 const statement = (invoice, plays) => {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `Statement for ${invoice[0].customer}\n`;
   const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format;
   for (const perf of invoice[0].performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
     const thisAmount = amountFor(perf, play);
 
     // add volume credits
