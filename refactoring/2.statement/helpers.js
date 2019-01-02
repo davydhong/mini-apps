@@ -10,8 +10,8 @@ const playFor = aPerformance => plays[aPerformance.playID];
 // *
 const amountFor = (aPerformance) => {
   let result = 0;
-
-  switch (playFor(aPerformance).type) {
+  console.log(aPerformance.play.type);
+  switch (aPerformance.play.type) {
     case 'tragedy':
       result = 40000;
 
@@ -29,7 +29,7 @@ const amountFor = (aPerformance) => {
       break;
 
     default:
-      throw new Error(`unknown type: ${playFor(aPerformance).type}`);
+      throw new Error(`unknown type: ${aPerformance.play.type}`);
   }
   return result;
 };
@@ -43,7 +43,7 @@ const volumeCreditsFor = (aPerformance) => {
   // add volume credits
   result += Math.max(aPerformance.audience - 30, 0);
   // add extra credit for every ten comedy attendees
-  if (playFor(aPerformance).type === 'comedy') result += Math.floor(aPerformance.audience / 5);
+  if (aPerformance.play.type === 'comedy') result += Math.floor(aPerformance.audience / 5);
   return result;
 };
 
@@ -52,13 +52,27 @@ const volumeCreditsFor = (aPerformance) => {
 // *
 const usd = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
 
-const invoice = require('./invoice');
+const invoice = require('./invoices');
 
-const totalVolumeCredits = () => {
+// *
+// *
+// *
+const totalVolumeCredits = (data) => {
   let result = 0;
-  for (const perf of invoice[0].performances) {
+  for (const perf of data.performances) {
     // add volume credits
-    result += volumeCreditsFor(perf);
+    result += perf.volumeCredits;
+  }
+  return result;
+};
+
+// *
+// *
+// *
+const totalAmount = (data) => {
+  let result = 0;
+  for (const perf of data.performances) {
+    result += perf.amount;
   }
   return result;
 };
@@ -69,4 +83,5 @@ module.exports = {
   volumeCreditsFor,
   usd,
   totalVolumeCredits,
+  totalAmount,
 };

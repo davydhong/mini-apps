@@ -1,1 +1,1 @@
-new Intl.NumberFormat()
+totalAmount
