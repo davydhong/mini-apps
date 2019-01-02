@@ -52,30 +52,13 @@ const volumeCreditsFor = (aPerformance) => {
 // *
 const usd = aNumber => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(aNumber);
 
-const invoice = require('./invoices');
+// const invoice = require('./invoices');
 
 // *
-// *
-// *
-const totalVolumeCredits = (data) => {
-  let result = 0;
-  for (const perf of data.performances) {
-    // add volume credits
-    result += perf.volumeCredits;
-  }
-  return result;
-};
+const totalVolumeCredits = data => data.performances.reduce((total, perf) => total + perf.volumeCredits, 0);
 
 // *
-// *
-// *
-const totalAmount = (data) => {
-  let result = 0;
-  for (const perf of data.performances) {
-    result += perf.amount;
-  }
-  return result;
-};
+const totalAmount = data => data.performances.reduce((total, perf) => total + perf.amount, 0);
 
 module.exports = {
   amountFor,
