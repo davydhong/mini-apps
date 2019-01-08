@@ -64,11 +64,6 @@ class PerformanceCalculator {
   }
 }
 
-// *
-// * No longer needed - moved to PerformanceCalculator
-// *
-// //const amountFor = aPerformance => new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount;
-
 class TragedyCalculator extends PerformanceCalculator {
   get amount() {
     let result = 40000;
