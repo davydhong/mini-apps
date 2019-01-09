@@ -23,25 +23,12 @@ const playFor = aPerformance => plays[aPerformance.playID];
 // *
 // *
 // *
-const totalVolumeCredits = (data) => {
-  let result = 0;
-  for (const perf of data.performances) {
-    // add volume credits
-    result += perf.volumeCredits;
-  }
-  return result;
-};
+const totalVolumeCredits = data => data.performances.reduce((total, perf) => total + perf.volumeCredits, 0);
 
 // *
 // *
 // *
-const totalAmount = (data) => {
-  let result = 0;
-  for (const perf of data.performances) {
-    result += perf.amount;
-  }
-  return result;
-};
+const totalAmount = data => data.performances.reduce((total, perf) => total + perf.amount, 0);
 
 class PerformanceCalculator {
   constructor(aPerformance, aPlay) {
@@ -112,6 +99,5 @@ const createStatementData = (invoice) => {
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
   return statementData;
 };
-
 
 module.exports = { createStatementData };
