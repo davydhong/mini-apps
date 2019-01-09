@@ -54,13 +54,7 @@ class PerformanceCalculator {
   }
 
   get volumeCredits() {
-    let result = 0;
-
-    // add volume credits
-    result += Math.max(this.performance.audience - 30, 0);
-    // add extra credit for every ten comedy attendees
-    if (this.play.type === 'comedy') result += Math.floor(this.performance.audience / 5);
-    return result;
+    return Math.max(this.performance.audience - 30, 0);
   }
 }
 
@@ -84,6 +78,10 @@ class ComedyCalculator extends PerformanceCalculator {
     result += 300 * this.performance.audience;
     return result;
   }
+
+  get volumeCredit() {
+    return super.volumeCredit + Math.floor(this.performance.audience / 5);
+  }
 }
 
 const createPerformanceCalculator = (aPerformance, aPlay) => {
@@ -103,7 +101,6 @@ const enrichPerformance = (aPerformance) => {
   result.play = calculator.play;
   result.amount = calculator.amount;
   result.volumeCredits = calculator.volumeCredits;
-  console.log(result);
   return result;
 };
 
@@ -115,5 +112,6 @@ const createStatementData = (invoice) => {
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
   return statementData;
 };
+
 
 module.exports = { createStatementData };
