@@ -30,6 +30,12 @@ describe('province', () => {
     expect(asia.shortfall).toBe(-25);
     expect(asia.profit).toBe(0);
   });
+
+  it('empty string demand', () => {
+    asia.demand = '';
+    expect(asia.shortfall).NaN;
+    expect(asia.profit).NaN;
+  });
 });
 
 describe('no producers', () => {
@@ -48,5 +54,18 @@ describe('no producers', () => {
   });
   it('profit', () => {
     expect(noProducers.profit).toBe(0);
+  });
+});
+
+describe('string for producers', () => {
+  it('', () => {
+    const data = {
+      name: 'String producers',
+      producers: '',
+      demand: 30,
+      price: 20,
+    };
+    const prov = new Province(data);
+    expect(prov.shortfall).toBe(0);
   });
 });
