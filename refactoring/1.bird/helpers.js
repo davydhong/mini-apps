@@ -55,8 +55,8 @@ function createBird(bird) {
 }
 
 function plumages(birds) {
-  return createBird(bird).plumage;
+  return new Map(birds.map(b => createBird(b)).map(bird => [bird.name, bird.plumage]));
 }
 function speeds(birds) {
-  return createBird(bird).airSpeedVelocity;
+  return new Map(birds.map(b => createBird(b)).map(bird => [bird.name, bird.airSpeedVelocity]));
 }
