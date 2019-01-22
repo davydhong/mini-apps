@@ -4,29 +4,11 @@ class Bird {
   }
 
   get plumage() {
-    switch (this.type) {
-      case 'EuropeanSwallow':
-        throw new Error('use subclass');
-      case 'AfricanSwallow':
-        return this.numberOfCoconuts > 2 ? 'tired' : 'average';
-      case 'NorwegianBlueParrot':
-        return this.voltage > 100 ? 'scorched' : 'beautiful';
-      default:
-        return 'unknown';
-    }
+    return 'unknown';
   }
 
   get airSpeedVelocity() {
-    switch (this.type) {
-      case 'EuropeanSwallow':
-        throw new Error('use subclass');
-      case 'AfricanSwallow':
-        return 402 * this.numberOfCoconuts;
-      case 'NorwegianBlueParrot':
-        return this.isNailed ? 0 : 10 + this.voltage / 10;
-      default:
-        return null;
-    }
+    return null;
   }
 }
 
