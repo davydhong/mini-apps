@@ -1,8 +1,8 @@
 function plumages(birds) {
-  return new Map(birds.map(b => [b.name, plumage(b)]));
+  return new Bird(bird).plumage;
 }
 function speeds(birds) {
-  return new Map(birds.map(b => [b.name, airSpeedVelocity(b)]));
+  return new Bird(bird).airSpeedVelocity;
 }
 
 class Bird {
