@@ -36,6 +36,8 @@ const rating = (voyage, history) => {
   return 'B';
 };
 
+
+
 module.exports = {
   rating,
   voyageRisk,
