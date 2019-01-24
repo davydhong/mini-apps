@@ -14,10 +14,9 @@ class Rating {
   }
 
   captainHistoryRisk() {
-    const { voyage, history } = this;
     let result = 1;
-    if (history.length < 5) result += 4;
-    result += history.filter(v => v.profit < 0).length;
+    if (this.history.length < 5) result += 4;
+    result += this.history.filter(v => v.profit < 0).length;
     return Math.max(result, 0);
   }
 
@@ -31,14 +30,8 @@ class Rating {
     let result = 2;
     if (voyage.zone === 'china') result += 1;
     if (voyage.zone === 'east­indies') result += 1;
-    result += this.voyageAndHistoryLengthFactor;
-    return result;
-  }
-
-  get voyageAndHistoryLengthFactor() {
-    let result = 0;
     result += this.historyLengthFactor;
-    result -= this.voyageLengthFactor;
+    result += this.voyageLengthFactor;
     return result;
   }
 
@@ -47,7 +40,7 @@ class Rating {
   }
 
   get voyageLengthFactor() {
-    return this.history.length > 14 ? 1 : 0;
+    return this.history.length > 14 ? -1 : 0;
   }
 
   get value() {
@@ -67,13 +60,6 @@ class ExperiencedChinaRating extends Rating {
 
   voyageProfitFactor() {
     return super.voyageProfitFactor + 3;
-  }
-
-  get voyageAndHistoryLengthFactor() {
-    let result = 0;
-    result += this.historyLengthFactor;
-    result += this.voyageLengthFactor;
-    return result;
   }
 
   get historyLengthFactor() {
