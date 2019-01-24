@@ -18,7 +18,6 @@ class Rating {
     let result = 1;
     if (history.length < 5) result += 4;
     result += history.filter(v => v.profit < 0).length;
-    if (voyage.zone === 'china' && hasChina(history)) result = 2;
     return Math.max(result, 0);
   }
 
@@ -36,10 +35,10 @@ class Rating {
       result += 3;
       if (history.length > 10) result += 1;
       if (voyage.length > 12) result += 1;
-      if (voyage.length > 18) result = 1;
+      if (voyage.length > 18) result -= 1;
     } else {
       if (history.length > 8) result += 1;
-      if (voyage.length > 14) result = 1;
+      if (voyage.length > 14) result -= 1;
     }
     return result;
   }
@@ -53,7 +52,21 @@ class Rating {
   }
 }
 
-const rating = (voyage, history) => new Rating(voyage, history).value;
+class ExperiencedChinaRating extends Rating {
+  captainHistoryRisk() {
+    const result = super.captainHistoryRisk - 2;
+    return Math.max(result, 0);
+  }
+
+  voyageProfitFactor() {}
+}
+
+const createRating = (voyage, history) => {
+  if (voyage.zone === 'china' && history.some(v => v.zone === 'china')) return new ExperiencedChinaRating(voyage, history);
+  return new Rating(voyage, history);
+};
+
+const rating = (voyage, history) => createRating(voyage, history).value;
 
 module.exports = {
   rating,
