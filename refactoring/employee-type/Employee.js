@@ -19,6 +19,10 @@ class Employee {
     if (!['engineer', 'manager', 'salesman'].includes(arg)) throw new Error(`Employee cannot be of type${arg}`);
   }
 
+  get typeString() {
+    return this._type.toString();
+  }
+
   get type() {
     return this._type;
   }
