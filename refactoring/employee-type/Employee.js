@@ -1,3 +1,13 @@
+class EmployeeType {
+  constructor(aString) {
+    this._value = aString;
+  }
+
+  toString() {
+    return this._value;
+  }
+}
+
 class Employee {
   constructor(name, type) {
     this.validateType(type);
