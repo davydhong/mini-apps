@@ -1,5 +1,5 @@
 function score(candidate, medicalExam, scoringGuide) {
-  return new Scorer(candidate, medicalExam, scoringGuide).execute();
+  return new Scorer().execute(candidate, medicalExam, scoringGuide);
 }
 
 class Scorer {
