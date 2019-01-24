@@ -4,7 +4,15 @@ class Rating {
     this.history = history;
   }
 
-  voyageRisk() {
+  get value() {
+    const vpf = this.voyageProfitFactor;
+    const vr = this.voyageRisk;
+    const chr = this.captainHistoryRisk;
+    if (vpf * 3 > vr + chr * 2) return 'A';
+    return 'B';
+  }
+
+  get voyageRisk() {
     const { voyage } = this;
     let result = 1;
     if (voyage.length > 4) result += 2;
@@ -13,19 +21,19 @@ class Rating {
     return Math.max(result, 0);
   }
 
-  captainHistoryRisk() {
+  get captainHistoryRisk() {
     let result = 1;
     if (this.history.length < 5) result += 4;
     result += this.history.filter(v => v.profit < 0).length;
     return Math.max(result, 0);
   }
 
-  hasChina() {
+  get hasChina() {
     const { history } = this;
     history.some(v => v.zone === 'china');
   }
 
-  voyageProfitFactor() {
+  get voyageProfitFactor() {
     const { voyage } = this;
     let result = 2;
     if (voyage.zone === 'china') result += 1;
@@ -42,23 +50,15 @@ class Rating {
   get voyageLengthFactor() {
     return this.history.length > 14 ? -1 : 0;
   }
-
-  get value() {
-    const vpf = this.voyageProfitFactor();
-    const vr = this.voyageRisk();
-    const chr = this.captainHistoryRisk();
-    if (vpf * 3 > vr + chr * 2) return 'A';
-    return 'B';
-  }
 }
 
 class ExperiencedChinaRating extends Rating {
-  captainHistoryRisk() {
+  get captainHistoryRisk() {
     const result = super.captainHistoryRisk - 2;
     return Math.max(result, 0);
   }
 
-  voyageProfitFactor() {
+  get voyageProfitFactor() {
     return super.voyageProfitFactor + 3;
   }
 
