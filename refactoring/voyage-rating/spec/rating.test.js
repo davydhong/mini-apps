@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { voyage, history } = require('../sampleRatingData');
 
-const { rating } = require('../helpers');
+const { rating } = require('../Rating');
 
 describe('Rating', () => {
   beforeEach(() => {
