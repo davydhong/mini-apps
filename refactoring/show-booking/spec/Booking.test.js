@@ -17,3 +17,21 @@ describe('PremiumBooking - hasTalkback', () => {
     expect(premiumBooking.hasTalkBack).toBeFalsy();
   });
 });
+
+describe('Booking - basePrice', () => {
+  it('should', () => {
+    expect(regularBooking.basePrice).toEqual(5);
+  });
+});
+
+describe('PremiumBooking - basePrice', () => {
+  it('should', () => {
+    expect(premiumBooking.basePrice).toEqual(25);
+  });
+});
+
+describe('PremiumBooking - hasDinner', () => {
+  it('should', () => {
+    expect(premiumBooking.hasDinner).toBeFalsy();
+  });
+});
