@@ -39,8 +39,20 @@ class PremiumBooking extends Booking {
 
 class PremiumBookingDelegate {
   constructor(hostBooking, extras) {
-    this._host = host;
+    this._host = hostBooking;
     this._extras = extras;
+  }
+
+  get hasTalkback() {
+    return {}.hasOwnProperty.call(this._host._show, 'talkback');
+  }
+
+  get basePrice() {
+    return Math.round(this._host.basePrice + this._extras.premiumFee);
+  }
+
+  get hasDinner() {
+    return {}.hasOwnProperty.call(this._extras, 'dinner') && !this.isPeakDay;
   }
 }
 
