@@ -50,7 +50,6 @@ const createPremiumBooking = (show, date, extras) => {
 
 module.exports = {
   Booking,
-  PremiumBooking,
   createBooking,
   createPremiumBooking,
 };

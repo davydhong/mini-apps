@@ -1,7 +1,5 @@
 const { regularBookingData, premiumBookingData } = require('../sampleBookingData');
-const {
-  Booking, PremiumBooking, createBooking, createPremiumBooking,
-} = require('../Booking');
+const { Booking, createBooking, createPremiumBooking } = require('../Booking');
 
 const regularBooking = createBooking(regularBookingData.show, regularBookingData.date);
 const premiumBooking = createPremiumBooking(premiumBookingData.show, premiumBookingData.date, premiumBookingData.extras);
