@@ -21,26 +21,11 @@ class Booking {
   _bePremium(extras) {
     this._premiumDelegate = new PremiumBookingDelegate(this, extras);
   }
-}
-class PremiumBooking extends Booking {
-  constructor(show, date, extras) {
-    super(show, date);
-    this._extras = extras;
-  }
-
-  get hasTalkback() {
-    return {}.hasOwnProperty.call(this._show, 'talkback');
-  }
-
-  get basePrice() {
-    return Math.round(super.basePrice + this._extras.premiumFee);
-  }
 
   get hasDinner() {
-    return {}.hasOwnProperty.call(this._extras, 'dinner') && !this.isPeakDay;
+    return this._premiumDelegate ? this._premiumDelegate.hasDinner : undefined;
   }
 }
-
 class PremiumBookingDelegate {
   constructor(hostBooking, extras) {
     this._host = hostBooking;

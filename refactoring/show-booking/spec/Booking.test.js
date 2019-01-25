@@ -30,6 +30,12 @@ describe('PremiumBooking - basePrice', () => {
   });
 });
 
+describe('Booking - hasDinner', () => {
+  it('should', () => {
+    expect(regularBooking.hasDinner).toBeFalsy();
+  });
+});
+
 describe('PremiumBooking - hasDinner', () => {
   it('should', () => {
     expect(premiumBooking.hasDinner).toBeFalsy();
