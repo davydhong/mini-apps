@@ -33,4 +33,7 @@ class PremiumBooking extends Booking {
   }
 }
 
+const createBooking = (show, date) => new Booking(show, date);
+const createPremiumBooking = (show, date) => new PremiumBooking(show, date);
+
 module.exports = { Booking, PremiumBooking };
