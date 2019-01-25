@@ -24,7 +24,7 @@ describe('Booking - basePrice', () => {
 
 describe('PremiumBooking - basePrice', () => {
   it('should', () => {
-    expect(premiumBooking.basePrice).toEqual(25);
+    expect(premiumBooking.basePrice).toEqual(2);
   });
 });
 
