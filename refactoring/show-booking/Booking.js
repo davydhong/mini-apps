@@ -13,6 +13,10 @@ class Booking {
     if (this.isPeakDay) result += Math.round(result * 0.15);
     return result;
   }
+
+  _bePremium(extras) {
+    this._premiumDelegate = new PremiumBookingDelegate(this, extras);
+  }
 }
 class PremiumBooking extends Booking {
   constructor(show, date, extras) {
@@ -41,6 +45,15 @@ class PremiumBookingDelegate {
 }
 
 const createBooking = (show, date) => new Booking(show, date);
-const createPremiumBooking = (show, date) => new PremiumBooking(show, date);
+const createPremiumBooking = (show, date, extras) => {
+  const result = new PremiumBooking(show, date, extras);
+  result._bePremium(extras);
+  return result;
+};
 
-module.exports = { Booking, PremiumBooking };
+module.exports = {
+  Booking,
+  PremiumBooking,
+  createBooking,
+  createPremiumBooking,
+};
