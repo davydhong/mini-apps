@@ -67,8 +67,6 @@ class NorwegianBlueParrot extends Bird {
 
 function createBird(data) {
   switch (data.type) {
-    case 'EuropeanSwallow':
-      return new EuropeanSwallow(data);
     case 'AfricanSwallow':
       return new AfricanSwallow(data);
     case 'NorweigianBlueParrot':
