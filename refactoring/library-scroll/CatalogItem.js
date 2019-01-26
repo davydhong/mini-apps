@@ -18,9 +18,8 @@ class CatalogItem {
   }
 }
 
-class Scroll extends CatalogItem {
+class Scroll {
   constructor(id, title, tags, dateLastCleaned) {
-    super(id, title, tags);
     this._catalogItem = new CatalogItem(id, title, tags);
     this._lastCleaned = dateLastCleaned;
   }
