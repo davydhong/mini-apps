@@ -45,3 +45,5 @@ class Scroll {
     return this._lastCleaned.until(targetDate, ChronoUnit.DAYS);
   }
 }
+
+module.exports = Scroll;
