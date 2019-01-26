@@ -19,8 +19,9 @@ class CatalogItem {
 }
 
 class Scroll {
-  constructor(id, title, tags, dateLastCleaned) {
-    this._catalogItem = new CatalogItem(id, title, tags);
+  constructor(id, title, tags, dateLastCleaned, catalogID, catalog) {
+    this._id = id;
+    this._catalogItem = catalog.get(catalogID);
     this._lastCleaned = dateLastCleaned;
   }
 

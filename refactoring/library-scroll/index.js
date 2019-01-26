@@ -14,4 +14,5 @@ const LocalDate = {
 
 const scroll = new Scroll(record.id, record.catalogData.title, record.catalogData.tags, LocalDate.parse(record.lastCleaned));
 
-const scrolls = aDocument.map(record => new Scroll(record.id, record.catalogData.title, record.catalogData.tags, LocalDate.parse(record.lastCleaned)));
+const scrolls = aDocument
+  .map(record => new Scroll(record.id, record.catalogData.title, record.catalogData.tags, LocalDate.parse(record.lastCleaned, record.catalogData.id, catalog)));
