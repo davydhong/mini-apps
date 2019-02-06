@@ -1,5 +1,5 @@
-const { regularBookingData, premiumBookingData } = require('../sampleBookingData');
-const { Booking, createBooking, createPremiumBooking } = require('../Booking');
+const { regularBookingData, premiumBookingData } = require('./sampleBookingData');
+const { Booking, createBooking, createPremiumBooking } = require('./Booking');
 
 const regularBooking = createBooking(regularBookingData.show, regularBookingData.date);
 const premiumBooking = createPremiumBooking(premiumBookingData.show, premiumBookingData.date, premiumBookingData.extras);
@@ -24,7 +24,7 @@ describe('Booking - basePrice', () => {
 
 describe('PremiumBooking - basePrice', () => {
   it('should', () => {
-    expect(premiumBooking.basePrice).toEqual(2);
+    expect(premiumBooking.basePrice).toEqual(20);
   });
 });
 
