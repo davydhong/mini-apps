@@ -1,4 +1,3 @@
-const { promisify } = require('util');
 const TTTBoard = require('./TTTBoard');
 
 console.clear();
@@ -14,7 +13,7 @@ process.stdin.on('data', (chunk) => {
     // change board
     const rowColFromInput = inputLocation
       .split('')
-      .map(cell => parseInt(cell))
+      .map(cell => parseInt(cell, 10))
       .filter(num => !isNaN(num));
     game.placeMarker(...rowColFromInput);
   } else {
@@ -23,7 +22,13 @@ process.stdin.on('data', (chunk) => {
     console.log('input valid location. format: 1,2');
   }
   // TODO: check winner
-  // TODO: show winner
+  if (game.winner) {
+    console.log(`${game.turn.otherPlayer} WON!!!`);
+    process.exit();
+  }
+  // if there is show winner and exit
 });
 
-process.stdin.on('end', () => process.exit(console.log('game exited')));
+process.stdin.on('end', () => {
+  process.exit();
+});

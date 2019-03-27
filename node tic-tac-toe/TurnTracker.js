@@ -7,6 +7,10 @@ class TurnTracker {
     return this.isO ? 'O' : 'X';
   }
 
+  get otherPlayer() {
+    return !this.isO ? 'O' : 'X';
+  }
+
   reset() {
     this.isO = true;
   }
